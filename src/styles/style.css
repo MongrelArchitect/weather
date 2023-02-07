@@ -5,3 +5,11 @@
 body {
   background: #ccc;
 }
+
+.container {
+  display: grid;
+}
+
+.container > * {
+  border: 2px solid red;
+}
