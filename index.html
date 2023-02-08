@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
   </head>
   <body>
@@ -10,21 +10,29 @@
       <div class="header">WeatherApp</div>
       <div class="search">
         <form>
-          <label for="city">Search City:
-            <input type="text" id="city" required>
-          </label>
+          <label for="city">Search City:</label>
+          <input type="text" id="city" required />
+          <span class="error">Error message</span>
           <button>SUBMIT</button>
         </form>
       </div>
       <div class="content">
         <div class="city-name">City Name</div>
-        <div class="weather-name">Weather</div>
         <div class="temp">Temperature</div>
         <div class="weather-desc">Description</div>
+        <div class="humidity">Humidity</div>
         <div class="clouds">Cloud Cover</div>
         <div class="wind">Wind Speed</div>
       </div>
-      <div class="footer">Footer</div>
+      <div></div>
+      <div class="footer">
+        <span>
+          Designed by
+          <a target="_blank" href="http://www.seanericthomas.com"
+            >Sean Eric Thomas</a
+          >
+        </span>
+      </div>
     </div>
     <script src="./main.js"></script>
   </body>
