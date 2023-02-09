@@ -136,10 +136,10 @@ export function searchCity() {
   });
 }
 
-export function loadDefault() {
+export function loadDefault(location) {
   // A default weather search for the initial page load
   showLoading();
-  getWeather('Oxnard') // Nardcore
+  getWeather(location)
     .then((result) => {
       const data = processData(result);
       drawWeather(data);
