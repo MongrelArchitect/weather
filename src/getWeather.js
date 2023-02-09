@@ -3,7 +3,7 @@ const apiKey = 'b092e80f858601cbd87cccbe20c69611';
 async function getCoordinates(cityName) {
   // Convert city name to coordiates using Open Weather's geocoder API
   const response = await fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`,
+    `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`,
     { mode: 'cors' },
   );
 
