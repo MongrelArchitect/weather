@@ -13,12 +13,16 @@ body {
 button {
   border: 2px solid #339;
   cursor: pointer;
-  color: #11a;
-  background: #eef;
+  color: #111;
+  background: #eee;
 }
 
-button:focus {
-  outline: 2px solid #11a;
+button:focus,
+button:hover,
+input:focus,
+input:hover {
+  outline: 1px solid #11a;
+  background: #eef;
 }
 
 form {
@@ -28,6 +32,10 @@ form {
   margin: auto;
   max-width: 400px;
   width: 90%;
+}
+
+input {
+  border: 2px solid #339;
 }
 
 input,
@@ -52,6 +60,7 @@ button {
   height: 100%;
   margin: auto;
   max-width: 1000px;
+  transition: background 500ms ease-in-out;
 }
 
 .container > * {
@@ -67,7 +76,7 @@ button {
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
   font-size: 1.1rem;
-  gap: 8px;
+  gap: 16px;
   margin: auto;
   max-width: 300px;
   padding: 24px;
@@ -78,6 +87,9 @@ button {
 
 .error {
   background: #a11;
+  border-right: 2px solid #339;
+  border-bottom: 2px solid #339;
+  border-left: 2px solid #339;
   border-radius: 0 0 10px 10px;
   color: #fee;
   margin-top: -9px;

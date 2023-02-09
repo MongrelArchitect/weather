@@ -1,16 +1,19 @@
 import { getWeather, processData } from './getWeather';
 
 function showLoading() {
+  // Show when awaiting api calls
   const loading = document.querySelector('.loading');
   loading.className = 'loading visible';
 }
 
 function hideLoading() {
+  // Not waiting anymore
   const loading = document.querySelector('.loading');
   loading.className = 'loading';
 }
 
 export function drawError(message) {
+  // Display error to user
   hideLoading();
   const errorMessage = document.querySelector('.error');
   errorMessage.className = 'error visible';
@@ -18,12 +21,14 @@ export function drawError(message) {
 }
 
 function clearError() {
+  // Everthing's ok so far
   const errorMessage = document.querySelector('.error');
   errorMessage.className = 'error';
   errorMessage.textContent = 'Looks good!';
 }
 
 function drawWeather(data) {
+  // Display the weather data
   const cityName = document.querySelector('.city-name');
   const temp = document.querySelector('.temp');
   const weatherDesc = document.querySelector('.weather-desc');
@@ -40,6 +45,7 @@ function drawWeather(data) {
 }
 
 function drawBackground(id) {
+  // Too many weather conditions to bother with a unique image for each
   const simpleId = () => {
     if (id >= 200 && id <= 232) {
       return 200;
@@ -95,6 +101,7 @@ function drawBackground(id) {
 }
 
 export function searchCity() {
+  // Warn the user if they've got an empy search
   const searchField = document.querySelector('input');
   searchField.addEventListener('input', (event) => {
     if (!event.target.value) {
@@ -107,26 +114,32 @@ export function searchCity() {
   const searchButton = document.querySelector('button');
   searchButton.addEventListener('click', (event) => {
     event.preventDefault();
-    const city = searchField.value;
+    // Show loading icon before any async stuff starts
     showLoading();
+    const city = searchField.value;
     if (!city) {
+      // Warn the user if they've got an empy search
       drawError('Please enter a city name');
     } else {
       getWeather(city)
         .then((result) => {
           const data = processData(result);
+          // Show weather data & change background accordingly
           drawWeather(data);
           drawBackground(data.weather.id);
+          // Not waiting anymore
           hideLoading();
         })
+        // No response or bad search query, so no results to show =(
         .catch(() => drawError('No results - try again'));
     }
   });
 }
 
 export function loadDefault() {
+  // A default weather search for the initial page load
   showLoading();
-  getWeather('Oxnard')
+  getWeather('Oxnard') // Nardcore
     .then((result) => {
       const data = processData(result);
       drawWeather(data);
