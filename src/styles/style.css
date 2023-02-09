@@ -5,7 +5,7 @@
 }
 
 body {
-  background: #ccc;
+  background: #448;
   font-family: Ubuntu, sans-serif;
   height: 100vh;
 }
@@ -43,6 +43,9 @@ button {
 .container {
   align-content: start;
   background: #ffe;
+  background-size: cover;
+  background-attachment: center;
+  box-shadow: 0 0 8px #111;
   display: grid;
   gap: 16px;
   grid-template-rows: 64px 1fr 4fr 6fr 64px;
@@ -55,10 +58,11 @@ button {
   padding: 8px;
 }
 
-.content {
+.content,
+.search {
   align-items: center;
   background: #fff;
-  box-shadow: 0 0 6px #888;
+  box-shadow: 0 0 6px #000;
   display: flex;
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
@@ -94,20 +98,20 @@ button {
 }
 
 .footer a {
-  color: #911;
+  color: #ae4;
   font-weight: bold;
   text-decoration: none;
 }
 
 .header {
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .header,
 .footer {
   align-items: center;
-  background: #dff;
+  background: rgba(16, 16, 64, 0.6);
+  color: #efe;
   display: flex;
   justify-content: center;
   padding: 16px;

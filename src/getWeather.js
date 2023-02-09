@@ -34,6 +34,7 @@ export function processData(data) {
   return {
     name: data.name,
     weather: {
+      id: data.weather[0].id,
       name: data.weather[0].main,
       description: data.weather[0].description,
     },

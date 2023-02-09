@@ -39,6 +39,61 @@ function drawWeather(data) {
   wind.textContent = `wind speed: ${data.wind}mph`;
 }
 
+function drawBackground(id) {
+  const simpleId = () => {
+    if (id >= 200 && id <= 232) {
+      return 200;
+    }
+    if (id >= 300 && id <= 321) {
+      return 300;
+    }
+    if (id >= 500 && id <= 531) {
+      return 500;
+    }
+    if (id >= 600 && id <= 622) {
+      return 600;
+    }
+    if (id >= 701 && id <= 781) {
+      return id;
+    }
+    if (id === 800) {
+      return id;
+    }
+    if (id >= 801 && id <= 802) {
+      return id;
+    }
+    return 803;
+  };
+
+  const backgrounds = {
+    200: 'thunder',
+    300: 'drizzle',
+    500: 'rain',
+    600: 'snow',
+    701: 'mist',
+    711: 'smoke',
+    721: 'haze',
+    731: 'dust',
+    741: 'mist',
+    751: 'dust',
+    761: 'dust',
+    762: 'dust',
+    771: 'rain',
+    781: 'tornado',
+    800: 'clear',
+    801: 'few-clouds',
+    802: 'few-clouds',
+    803: 'cloudy',
+    804: 'overcast',
+  };
+
+  const container = document.querySelector('.container');
+  container.setAttribute(
+    'style',
+    `background-image: url("./images/${backgrounds[simpleId()]}.jpg");`,
+  );
+}
+
 export function searchCity() {
   const searchField = document.querySelector('input');
   searchField.addEventListener('input', (event) => {
@@ -59,10 +114,24 @@ export function searchCity() {
     } else {
       getWeather(city)
         .then((result) => {
-          drawWeather(processData(result));
+          const data = processData(result);
+          drawWeather(data);
+          drawBackground(data.weather.id);
           hideLoading();
         })
         .catch(() => drawError('No results - try again'));
     }
   });
+}
+
+export function loadDefault() {
+  showLoading();
+  getWeather('Oxnard')
+    .then((result) => {
+      const data = processData(result);
+      drawWeather(data);
+      drawBackground(data.weather.id);
+      hideLoading();
+    })
+    .catch(() => drawError('No results - try again'));
 }

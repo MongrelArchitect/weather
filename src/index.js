@@ -1,6 +1,7 @@
 import './styles/reset.css';
 import './styles/style.css';
 
-import { searchCity } from './ui';
+import { searchCity, loadDefault } from './ui';
 
+loadDefault();
 searchCity();
