@@ -62,7 +62,7 @@ function drawBackground(id) {
     if (id >= 701 && id <= 781) {
       return id;
     }
-    if (id === 800) {
+    if (id === 800 || id === 804) {
       return id;
     }
     if (id >= 801 && id <= 802) {
