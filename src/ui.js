@@ -1,6 +1,17 @@
 import { getWeather, processData } from './getWeather';
 
-export function drawError(message, error) {
+function showLoading() {
+  const loading = document.querySelector('.loading');
+  loading.className = 'loading visible';
+}
+
+function hideLoading() {
+  const loading = document.querySelector('.loading');
+  loading.className = 'loading';
+}
+
+export function drawError(message) {
+  hideLoading();
   const errorMessage = document.querySelector('.error');
   errorMessage.className = 'error visible';
   errorMessage.textContent = message;
@@ -21,7 +32,7 @@ function drawWeather(data) {
   const wind = document.querySelector('.wind');
 
   cityName.textContent = data.name;
-  temp.textContent = `${data.temp} °F`;
+  temp.textContent = `${data.temp}°F`;
   weatherDesc.textContent = data.weather.description;
   humidity.textContent = `${data.humidity}% humidity`;
   clouds.textContent = `${data.clouds}% cloud cover`;
@@ -42,12 +53,16 @@ export function searchCity() {
   searchButton.addEventListener('click', (event) => {
     event.preventDefault();
     const city = searchField.value;
+    showLoading();
     if (!city) {
       drawError('Please enter a city name');
     } else {
       getWeather(city)
-        .then((result) => drawWeather(processData(result)))
-        .catch((error) => drawError('No results - try again', error));
+        .then((result) => {
+          drawWeather(processData(result));
+          hideLoading();
+        })
+        .catch(() => drawError('No results - try again'));
     }
   });
 }
